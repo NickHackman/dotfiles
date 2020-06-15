@@ -4,19 +4,19 @@ These are my personal configuration files, they're simple I'll admit, but simple
 
 ## 📷 Screenshots
 
-### Clean
+### ✨ Clean
 
 ![Clean](./imgs/clean.png)
 
-### Work
+### 👨‍💻 Work
 
 ![Work](./imgs/work.png)
 
-### Dirty
+### 🚧 Busy
 
 ![Dirty](./imgs/dirty.png)
 
-## Applications
+## 💾 Applications
 
 - [doom-emacs](https://github.com/hlissner/doom-emacs)
 - [exa](https://github.com/ogham/exa)
@@ -43,6 +43,6 @@ These are my personal configuration files, they're simple I'll admit, but simple
 - Doom Emacs is wonderful! Thanks [hlissner](https://github.com/hlissner)!
 - Firefox config based off [Flyfox](https://github.com/akshat46/FlyingFox). Thanks [akshat46](https://github.com/akshat46)!
 
-## License
+## ⚖️ License
 
 Licensed under [GPLv3](./LICENSE)
