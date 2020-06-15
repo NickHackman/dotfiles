@@ -39,8 +39,9 @@ These are my personal configuration files, they're simple I'll admit, but simple
 
 ## ❤️ Thanks
 
-- Polybar config based off [polybar-themes](https://github.com/adi1090x/polybar-themes#-polybar-10--dedistro-panels) by @adi1090x
-- Doom Emacs is wonderful! Thanks @hlissner
+- Polybar config based off [polybar-themes](https://github.com/adi1090x/polybar-themes#-polybar-10--dedistro-panels). Thanks [adi1090x](https://github.com/adi1090x)!
+- Doom Emacs is wonderful! Thanks [hlissner](https://github.com/hlissner)!
+- Firefox config based off [Flyfox](https://github.com/akshat46/FlyingFox). Thanks [akshat46](https://github.com/akshat46)!
 
 ## License
 
