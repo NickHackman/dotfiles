@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + @space
-	  /home/nick/.config/polybar/scripts/deepin-menu
+	  /home/nick/.config/polybar/scripts/menu
 
 super + w
 	  betterlockscreen -l
