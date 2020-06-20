@@ -73,17 +73,22 @@
 (map! :leader
       (:prefix-map ("o" . "open")
         ;; Open in current buffer
-        :desc "Open ~/ in current window" "H" (lambda () (interactive) (dired-current-win "~"))
-        :desc "Open / in in current window" "R" (lambda () (interactive) (dired-current-win "/"))
-        :desc "Open ~/.config in in current window" "C" (lambda () (interactive) (dired-current-win "~/.config"))
-        :desc "Open ~/Projects in current window" "P" (lambda () (interactive) (dired-current-win  "~/Projects"))
+        :desc "Open ~/ here" "H" (lambda () (interactive) (dired-current-win "~"))
+        :desc "Open / here" "R" (lambda () (interactive) (dired-current-win "/"))
+        :desc "Open ~/.config here" "C" (lambda () (interactive) (dired-current-win "~/.config"))
+        :desc "Open ~/Projects here" "P" (lambda () (interactive) (dired-current-win  "~/Projects"))
 
         ;; Open in new buffer
-        :desc "Open ~/ in new window" "h" (lambda () (interactive) (dired-other-win "~/."))
-        :desc "Open / in in new window" "r" (lambda () (interactive) (dired-other-win "/"))
-        :desc "Open ~/.config in in new window" "c" (lambda () (interactive) (dired-other-win "~/.config"))
-        :desc "Open ~/Projects in new window" "p" (lambda () (interactive) (dired-other-win  "~/Projects"))
- :desc "Open eshell" "t" #'+eshell/toggle))
+        :desc "Open ~/ new window" "h" (lambda () (interactive) (dired-other-win "~/."))
+        :desc "Open / new window" "r" (lambda () (interactive) (dired-other-win "/"))
+        :desc "Open ~/.config new window" "c" (lambda () (interactive) (dired-other-win "~/.config"))
+        :desc "Open ~/Projects new window" "p" (lambda () (interactive) (dired-other-win  "~/Projects"))
+
+        ;; More intuitive keybinding for term
+        :desc "Open eshell" "t" #'+eshell/toggle
+        ;; Open Files with Treemacs
+        :desc "Open treemacs" "f" #'+treemacs/toggle
+      ))
 
 ;; Add pylint and thereby mypy as python checkers
 (add-hook! python-mode
@@ -92,4 +97,9 @@
 
 ;; Rust-mode set lsp to rust-analyzer
 (setq rustic-lsp-server 'rust-analyzer)
+
+;; Allow treemacs to be resizable
+(setq treemacs--width-is-locked nil)
+
+;; Set company completion idle time
 (setq company-idle-delay 0.25)
