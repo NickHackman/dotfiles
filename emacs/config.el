@@ -61,15 +61,28 @@
 
 ;; Keybinds
 
-(defun dired-switch-to-dir (path)
+(defun dired-current-win (path)
   ;; Open path in Dired in current buffer
-  (dired-jump :FILE-NAME (expand-file-name path)))
+  (dired (expand-file-name path)))
+
+(defun dired-other-win (path)
+  ;; Open path in Dired in new buffer
+  (dired-other-window (expand-file-name path)))
 
 ;; Map SPC-o r and SPC-o h to dired open / and dired open ~ respectively
 (map! :leader
       (:prefix-map ("o" . "open")
-        :desc "Open ~/ in Dired" "h" (lambda () (interactive) (dired-switch-to-dir "~/.config"))
-        :desc "Open / in Dired" "r" (lambda () (interactive) (dired-switch-to-dir "/"))
+        ;; Open in current buffer
+        :desc "Open ~/ in current window" "H" (lambda () (interactive) (dired-current-win "~"))
+        :desc "Open / in in current window" "R" (lambda () (interactive) (dired-current-win "/"))
+        :desc "Open ~/.config in in current window" "C" (lambda () (interactive) (dired-current-win "~/.config"))
+        :desc "Open ~/Projects in current window" "P" (lambda () (interactive) (dired-current-win  "~/Projects"))
+
+        ;; Open in new buffer
+        :desc "Open ~/ in new window" "h" (lambda () (interactive) (dired-other-win "~/."))
+        :desc "Open / in in new window" "r" (lambda () (interactive) (dired-other-win "/"))
+        :desc "Open ~/.config in in new window" "c" (lambda () (interactive) (dired-other-win "~/.config"))
+        :desc "Open ~/Projects in new window" "p" (lambda () (interactive) (dired-other-win  "~/Projects"))
  :desc "Open eshell" "t" #'+eshell/toggle))
 
 ;; Add pylint and thereby mypy as python checkers
