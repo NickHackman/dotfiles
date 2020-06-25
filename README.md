@@ -37,6 +37,16 @@ These are my personal configuration files, they're simple I'll admit, but simple
 - [Material Design Icons](https://github.com/Templarian/MaterialDesign)
 - [Iosevka Nerd Font](https://github.com/ryanoasis/nerd-fonts)
 
+## 📦 Dots
+
+**Work in Progress**
+
+These dotfiles come with a Ruby installer script called [Dots](./dots)!
+
+### 💎 Install Ruby
+
+Follow Ruby's official [installation instructions](https://www.ruby-lang.org/en/documentation/installation/)
+
 ## ❤️ Thanks
 
 - Polybar config based off [polybar-themes](https://github.com/adi1090x/polybar-themes#-polybar-10--dedistro-panels). Thanks [adi1090x](https://github.com/adi1090x)!
