@@ -1,0 +1,43 @@
+# Configuration files to install
+#
+# -
+#   name: "name"
+#   destination: "place-to-install"
+#   install_children: true # or leave blank
+#   prompt_instructions: "Only present if destination is 'null', instructions on how to provide a destination"
+#   exclude: [] # An array of excluded children in a directory
+#
+# If the location to install must be prompted, the value MUST be null
+dots:
+  -
+    destination: ~/.config/bspwm
+    name: bspwm
+  -
+    destination: ~/.doom.d
+    name: emacs
+  -
+    destination: null
+    name: firefox
+    prompt_instructions: "🦊 Navigate to 'about:support' in Firefox, enter the directory listed in 'Profile Directory'"
+    exclude:
+      - "extensions"
+  -
+    destination: "~"
+    name: keybinds
+    install_children: true
+  -
+    destination: ~/.config/kitty
+    name: kitty
+  -
+    name: polybar
+    destination: ~/.config/polybar
+  -
+    name: sxhkd
+    destination: ~/.config/sxhkd
+  -
+    name: systemd
+    destination: ~/.config/systemd
+  -
+    name: zsh
+    destination: "~"
+    install_children: true
