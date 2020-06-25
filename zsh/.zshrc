@@ -54,6 +54,7 @@ PATH=$PATH:"$HOME/.emacs.d/bin"
 PATH=$PATH:"$HOME/.yarn/bin"
 PATH=$PATH:"$HOME/.cargo/bin"
 PATH=$PATH:"$HOME/.go/bin"
+PATH=$PATH:"$HOME/go/bin"
 PATH=$PATH:"$DENO_INSTALL/bin:$PATH"
 
 # Keybinds
