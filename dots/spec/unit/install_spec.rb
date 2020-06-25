@@ -1,7 +1,7 @@
 require 'dots/commands/install'
 
 RSpec.describe Dots::Commands::Install do
-  it "executes `install` command successfully" do
+  it 'executes `install` command successfully' do
     output = StringIO.new
     options = {}
     command = Dots::Commands::Install.new(options)

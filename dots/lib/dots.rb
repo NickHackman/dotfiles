@@ -1,6 +1,7 @@
-require "dots/version"
+require 'dots/version'
 
 module Dots
-  class Error < StandardError; end
-  # Your code goes here...
+  class Error < StandardError
+    # Your code goes here...
+  end
 end

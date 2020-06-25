@@ -1,9 +1,9 @@
-RSpec.describe '`dots install` command', type: :cli do
-  it 'executes `dots help install` command successfully' do
-    output = `dots help install`
+RSpec.describe "`dots list` command", type: :cli do
+  it "executes `dots help list` command successfully" do
+    output = `dots help list`
     expected_output = <<-OUT
 Usage:
-  dots install
+  dots list
 
 Options:
   -h, [--help], [--no-help]  # Display usage information
