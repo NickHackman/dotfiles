@@ -20,7 +20,8 @@ module Dots
 
     map %w[--version -v] => :version
 
-    desc 'list', 'Command description...'
+    desc 'list', 'List dotfiles'
+    method_option aliases: 'l'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
 
@@ -34,28 +35,30 @@ module Dots
     end
 
     desc 'remove', 'Remove installed configuration files'
+    method_option aliases: 'r'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
 
-    def remove(*)
+    def remove(*names)
       if options[:help]
         invoke :help, ['remove']
       else
         require_relative 'commands/remove'
-        Cmds::Commands::Remove.new(options).execute
+        Cmds::Commands::Remove.new(names, options).execute
       end
     end
 
     desc 'install', 'Install configuration files'
+    method_option aliases: 'i'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
 
-    def install(*)
+    def install(*names)
       if options[:help]
         invoke :help, ['install']
       else
         require_relative 'commands/install'
-        Cmds::Commands::Install.new(options).execute
+        Cmds::Commands::Install.new(names, options).execute
       end
     end
   end

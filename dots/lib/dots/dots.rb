@@ -7,6 +7,7 @@ require 'tty-prompt'
 
 require_relative './command'
 require_relative './dot'
+require_relative './error'
 
 module Dots
   DOTS_YAML_PATH = 'dots.yml'
@@ -25,16 +26,34 @@ module Dots
     def install_all
       prompt = Cmd::Command.prompt
       selected = prompt.multi_select('Select to install', @dots, per_page: 10, cycle: true)
-      puts '🚀 Installing...'
+      puts '🚀 Installing...' unless selected.empty?
       selected.each(&:install_symlink)
+    end
+
+    # Installs a specific dot by name
+    #
+    # Raises If name isn't a valid Dot
+    def install(name)
+      found = @dots.find { |d| d.name == name }
+      unknown_dot(found, name)
+      found.install_symlink
     end
 
     # Remove all selected dotfiles
     def remove_all
       prompt = Cmd::Command.prompt
       selected = prompt.multi_select('Select to delete', @dots, per_page: 10, cycle: true)
-      puts '🧼 Cleaning...'
+      puts '🧼 Cleaning...' unless selected.empty?
       selected.each(&:remove)
+    end
+
+    # Removes a specific dot by name
+    #
+    # Raises If name isn't a valid Dot
+    def remove(name)
+      found = @dots.find { |d| d.name == name }
+      unknown_dot(found, name)
+      found.remove
     end
 
     # List all dotfiles an icon corresponding to whether they're
@@ -67,6 +86,22 @@ module Dots
           printf(" %-17s [%s]\n", child, dest)
         end
       end
+    end
+
+    private
+
+    # check if unknown dotfile
+    #
+    # Raises exception Error::UnknownDot
+    def unknown_dot(found, name)
+      return if found
+
+      prompt = Cmd::Command.prompt
+      sug_text = "❓ No such dotfile #{name}, did you mean?"
+
+      prompt.suggest(name, @dots.map(&:name),
+                     indent: 4, single_text: sug_text, plural_text: sug_text)
+      raise Error::UnknownDot.new, 'Unknown dotfile'
     end
   end
 end
