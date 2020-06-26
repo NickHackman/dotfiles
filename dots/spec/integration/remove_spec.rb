@@ -1,5 +1,5 @@
-RSpec.describe "`dots remove` command", type: :cli do
-  it "executes `dots help remove` command successfully" do
+RSpec.describe '`dots remove` command', type: :cli do
+  it 'executes `dots help remove` command successfully' do
     output = `dots help remove`
     expected_output = <<-OUT
 Usage:

@@ -1,9 +1,9 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # Specify your gem's dependencies in dots.gemspec
 gemspec
 
-gem 'levenshtein-ffi', :require => 'levenshtein'
-gem "rake", "~> 12.0"
-gem "rspec", "~> 3.0"
+gem 'levenshtein-ffi', require: 'levenshtein'
+gem 'rake', '~> 12.0'
+gem 'rspec', '~> 3.0'
 gem 'tty-prompt'
