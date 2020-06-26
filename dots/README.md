@@ -4,7 +4,7 @@ This README and Dots as a whole are a work in progress 👨‍💻
 
 ## ⚾ Pitch
 
-The purpose of Dots is to make startup time on a new machine as short as possible as well as keeping your systems synchronized and having a continuous experience of what you know you love **dead simple**.
+The purpose of Dots is to make startup time on a new machine as short as possible as well as keeping your systems synchronized and having a continuous experience of what you know you love, **dead simple**.
 
 ## ✨ Features
 
