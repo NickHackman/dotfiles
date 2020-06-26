@@ -4,6 +4,7 @@
 feh --bg-scale /home/nick/.background.jpg &
 xmodmap /home/nick/.speedswapper &
 polybar main 2>&1 > /dev/null &
+dunst &
 sxhkd &
 
 
