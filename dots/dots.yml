@@ -41,3 +41,6 @@ dots:
     name: zsh
     destination: "~"
     install_children: true
+  -
+    name: dunst
+    destination: ~/.config/dunst
