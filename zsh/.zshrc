@@ -22,6 +22,7 @@ zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
+zplug "MichaelAquilina/zsh-auto-notify"
 
 if ! zplug check; then
     printf "Install? [y/N]: "
