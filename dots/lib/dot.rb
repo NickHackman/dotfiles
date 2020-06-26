@@ -2,9 +2,7 @@
 
 require 'fileutils'
 
-require 'tty-prompt'
-
-require_relative './command'
+require_relative './cli/command'
 
 module Dot
   # Dataclass that stores information about a singular Dotfile or Dot for short.

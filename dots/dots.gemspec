@@ -1,4 +1,4 @@
-require_relative 'lib/dots/version'
+require_relative 'lib/cli/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'dots'

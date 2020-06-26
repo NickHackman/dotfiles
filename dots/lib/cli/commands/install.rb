@@ -2,27 +2,28 @@
 
 require_relative '../command'
 
-require_relative '../dots'
+require_relative '../../dots'
+require_relative '../../error'
 
 module Cmds
   module Commands
     # Install subcommand
-    class Remove < Cmd::Command
+    class Install < Cmd::Command
       def initialize(dots, options)
-        @options = options
         @dots = dots
+        @options = options
       end
 
       def execute(input: $stdin, output: $stdout)
         dots = Dots::Dots.new
 
         if @dots.empty?
-          dots.remove_all
+          dots.install_all
         else
-          puts '🧼 Cleaning...'
+          puts '🚀 Installing...'
           @dots.each do |dot|
             begin
-              dots.remove(dot)
+              dots.install(dot)
             rescue Error::UnknownDot
               break
             end

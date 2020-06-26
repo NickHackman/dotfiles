@@ -2,7 +2,7 @@
 
 require_relative '../command'
 
-require_relative '../dots'
+require_relative '../../dots'
 
 module Cmds
   module Commands
