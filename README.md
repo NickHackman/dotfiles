@@ -41,11 +41,7 @@ These are my personal configuration files, they're simple I'll admit, but simple
 
 **Work in Progress**
 
-These dotfiles come with a Ruby installer script called [Dots](./dots)!
-
-### 💎 Install Ruby
-
-Follow Ruby's official [installation instructions](https://www.ruby-lang.org/en/documentation/installation/)
+These dotfiles come with a Ruby installer called [Dots](./dots)!
 
 ## ❤️ Thanks
 
