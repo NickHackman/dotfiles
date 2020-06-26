@@ -1,6 +1,6 @@
 # Dots
 
-This README and Dots as a whole is a work in progress 👨‍💻
+This README and Dots as a whole are a work in progress 👨‍💻
 
 ## ⚾ Pitch
 
