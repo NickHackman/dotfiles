@@ -48,14 +48,11 @@ module Dot
 
     # Delete Dot
     def remove
-      if @install_children
-        dir = Dir.new(@source)
-        dir.each_child do |child|
-          path = File.join(@destination, child)
-          rm(path)
-        end
-      else
-        rm(@destination)
+      return rm(@destination) unless @install_children
+
+      children.each do |child|
+        path = File.join(@destination, child)
+        rm(path)
       end
     end
 
@@ -89,8 +86,7 @@ module Dot
 
       return false unless src_is_dir && dest_is_dir
 
-      dir = Dir.new(src)
-      dir.each_child do |child|
+      children.each do |child|
         src_child = File.join(src, child)
         dest_child = File.join(dest, child)
         return false unless FileUtils.compare_file(src_child, dest_child)
@@ -130,8 +126,7 @@ module Dot
     def _install_children
       raise "'#{@source}' is not a directory" unless File.directory?(@source)
 
-      dir = Dir.new(@source)
-      dir.each_child do |child|
+      children.each do |child|
         next if @exclude&.include?(child)
 
         dest = File.join(@destination, child)
@@ -161,7 +156,6 @@ module Dot
 
       return unless is_dir
 
-      pp block.source_location
       _install_children { |src, dest| yield(src, dest) }
     end
 
