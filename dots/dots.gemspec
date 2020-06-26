@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.authors = ['NickHackman']
   spec.email = ['snickhackman@gmail.com']
 
-  spec.summary = ''
-  spec.description = ''
+  spec.summary = 'A dotfile installer'
+  spec.description = 'A dotfile installer that helps you get up and running fast and keep your dotfiles synchronized'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
 
   # Specify which files should be added to the gem when it is released.
