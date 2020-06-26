@@ -3,7 +3,6 @@
 require 'yaml'
 require 'pathname'
 
-require 'levenshtein'
 require 'tty-prompt'
 
 require_relative './command'
@@ -68,20 +67,6 @@ module Dots
           printf(" %-17s [%s]\n", child, dest)
         end
       end
-    end
-
-    # Find the most similar dotfile name listed in 'dots/dots.yml'
-    #
-    # If the distance between input and the minimum name is
-    # less than or equal to 3 the minimum name is returned else nil
-    def find_similar_dot(input)
-      min_dist = 4
-      min = @dots.min_by do |dot|
-        dist = Levenshtein.distance(input, dot.name)
-        min_dist = dist if min_dist > dist
-        dist
-      end
-      min_dist <= 3 ? min.name : nil
     end
   end
 end
