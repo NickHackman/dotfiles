@@ -20,9 +20,6 @@ super + Escape
 super + b
 	/usr/bin/firefox
 
-super + t
-	/usr/bin/telegram-desktop
-
 Print
 	scrot -q 80 'capture-%m-%d-%Y-%r.png' -e 'mv "$f" ~/Pictures/'
 
@@ -55,7 +52,7 @@ super + g
 #
 
 # set the window state
-super + {shift + t,s,f}
+super + {t,s,f}
 	bspc node -t {tiled,floating,fullscreen}
 
 # set the node flags
