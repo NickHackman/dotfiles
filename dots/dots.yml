@@ -44,3 +44,6 @@ dots:
   -
     name: dunst
     destination: ~/.config/dunst
+  -
+    name: neofetch
+    destination: ~/.config/neofetch
