@@ -54,10 +54,27 @@
 
 ;; Custom
 
-;; UI
-
 ;; Maximize Emacs when opened
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; Add pylint and thereby mypy as python checkers
+(add-hook! python-mode
+  (after! lsp
+    (flycheck-add-next-checker 'lsp 'python-pylint)))
+
+;; Rust-mode set lsp to rust-analyzer
+(setq rustic-lsp-server 'rust-analyzer)
+
+;; Allow treemacs to be resizable
+(setq treemacs--width-is-locked nil)
+
+;; Set company completion idle time
+(setq company-idle-delay 0.25)
+
+;; Tab bar set highlight to under
+(setq centaur-tabs-set-bar 'under)
+;; Disable tabs for eshell toggle terminal
+(add-hook 'eshell-mode-hook 'centaur-tabs-local-mode)
 
 ;; Keybinds
 
@@ -89,17 +106,3 @@
         ;; Open Files with Treemacs
         :desc "Open treemacs" "f" #'+treemacs/toggle
       ))
-
-;; Add pylint and thereby mypy as python checkers
-(add-hook! python-mode
-  (after! lsp
-    (flycheck-add-next-checker 'lsp 'python-pylint)))
-
-;; Rust-mode set lsp to rust-analyzer
-(setq rustic-lsp-server 'rust-analyzer)
-
-;; Allow treemacs to be resizable
-(setq treemacs--width-is-locked nil)
-
-;; Set company completion idle time
-(setq company-idle-delay 0.25)
