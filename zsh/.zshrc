@@ -23,7 +23,6 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
 zplug "g-plane/zsh-yarn-autocompletions", hook-build:"./zplug.zsh", defer:2
-zplug "MichaelAquilina/zsh-auto-notify"
 
 if ! zplug check; then
     printf "Install? [y/N]: "
