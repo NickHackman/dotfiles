@@ -37,10 +37,16 @@ dots:
     destination: "~"
     name: keybinds
     install_children: true
+    dependencies:
+      - amixer
+      - playerctl
+      - pactl
+      - xmodmap
   -
     destination: ~/.config/kitty
     name: kitty
     dependencies:
+      - python
       - kitty
   -
     name: polybar
@@ -73,3 +79,4 @@ dots:
     destination: ~/.config/neofetch
     dependencies:
       - neofetch
+      - kitty
