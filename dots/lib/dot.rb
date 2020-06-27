@@ -109,14 +109,14 @@ module Dot
         return
       end
 
-      File.delete(path) if prompt.yes?("🚧 Remove '#{path}'?")
+      FileUtils.rm_rf(path) if prompt.yes?("🚧 Remove '#{path}'?")
     end
 
     # Install a file check to see whether or not to overwrite the current file
     def install_or_overwrite(src, dest)
       prompt = Cmd::Command.prompt
 
-      File.delete(dest) if File.exist?(dest) && prompt.yes?("🚧 Overwrite '#{dest}'?")
+      FileUtils.rm_rf(dest) if File.exist?(dest) && prompt.yes?("🚧 Overwrite '#{dest}'?")
       yield(src, dest) unless File.exist?(dest)
     end
 
