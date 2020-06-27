@@ -45,6 +45,12 @@ module Dots
       selected.each(&:remove)
     end
 
+    # Doctor on all dotfiles
+    def doctor_all
+      puts '🏥 The doctor is here to see you now...'
+      @dots.each(&:doctor)
+    end
+
     # Removes a specific dot by name
     #
     # Raises If name isn't a valid Dot

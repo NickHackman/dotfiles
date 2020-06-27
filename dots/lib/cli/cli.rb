@@ -34,6 +34,20 @@ module Dots
       end
     end
 
+    desc 'doctor', 'Check dependencies for all dotfiles'
+    method_option aliases: 'd'
+    method_option :help, aliases: '-h', type: :boolean,
+                         desc: 'Display usage information'
+
+    def doctor(*)
+      if options[:help]
+        invoke :help, ['doctor']
+      else
+        require_relative 'commands/doctor'
+        Cmds::Commands::Doctor.new(options).execute
+      end
+    end
+
     desc 'remove', 'Remove installed configuration files'
     method_option aliases: 'r'
     method_option :help, aliases: '-h', type: :boolean,

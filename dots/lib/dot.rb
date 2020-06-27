@@ -3,6 +3,7 @@
 require 'fileutils'
 
 require_relative './cli/command'
+require_relative './path'
 
 module Dot
   # Dataclass that stores information about a singular Dotfile or Dot for short.
@@ -26,6 +27,8 @@ module Dot
       @install_children = hash.key?('install_children') && hash['install_children']
       @source = src_base_path + @name
       @exclude = hash['exclude']
+      @deps = hash['dependencies']
+      @doctor_command = hash['doctor_command']
       @prompt_instructions = hash['prompt_instructions']
     end
 
@@ -44,6 +47,25 @@ module Dot
     # returns name of Dot
     def to_s
       @name
+    end
+
+    # Checks to see if dependencies are installed and runs associated 'doctor' command
+    # if it exists
+    def doctor
+      path = Path::Path.instance
+      puts "🩺 Checkup for #{@name}"
+      if @deps.nil?
+        puts '   ✅ Nothing needed'
+      else
+        @deps.each do |dep|
+          if path.installed?(dep)
+            puts "   ✅ Found #{dep}"
+          else
+            puts "   ❌ Couldn't find #{dep}"
+          end
+        end
+      end
+      path.run(@doctor_command) if @doctor_command
     end
 
     # Delete Dot
