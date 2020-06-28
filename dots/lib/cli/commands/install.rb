@@ -14,7 +14,7 @@ module Commands
       @options = options
     end
 
-    def execute(input: $stdin, output: $stdout)
+    def execute(*)
       dots = init
 
       if @dots.empty?

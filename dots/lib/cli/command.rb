@@ -3,6 +3,7 @@
 require 'forwardable'
 
 module Cmd
+  # Provided by tty teletype
   class Command
     extend Forwardable
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dots/commands/install'
 
 RSpec.describe Dots::Commands::Install do

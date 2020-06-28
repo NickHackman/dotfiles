@@ -1,2 +1,11 @@
 Layout/LineLength:
   Max: 99
+
+Metrics/CyclomaticComplexity:
+  Max: 15
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/ClassLength:
+  Max: 150

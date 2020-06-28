@@ -13,7 +13,7 @@ module Commands
       @options = options
     end
 
-    def execute(input: $stdin, output: $stdout)
+    def execute(*)
       init(true)
       puts '✅ Looks good'
     end

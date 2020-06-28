@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/cli/version'
 
 Gem::Specification.new do |spec|
@@ -8,7 +10,8 @@ Gem::Specification.new do |spec|
   spec.email = ['snickhackman@gmail.com']
 
   spec.summary = 'A dotfile installer'
-  spec.description = 'A dotfile installer that helps you get up and running fast and keep your dotfiles synchronized'
+  spec.description = 'A dotfile installer that helps you get up and running fast and keep your' \
+  'dotfiles synchronized'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
 
   # Specify which files should be added to the gem when it is released.
