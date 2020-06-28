@@ -43,6 +43,14 @@ These are my personal configuration files, they're simple I'll admit, but simple
 
 These dotfiles come with a Ruby installer called [Dots](./dots)!
 
+Dots allows you to easily install all or a selection of dotfiles
+
+![Install all](./imgs/install_all.png)
+
+Dots allows you to see what dependencies you need to install
+
+![Doctor](./imgs/doctor.png)
+
 ## ❤️ Thanks
 
 - Polybar config based off [polybar-themes](https://github.com/adi1090x/polybar-themes#-polybar-10--dedistro-panels). Thanks [adi1090x](https://github.com/adi1090x)!
