@@ -31,11 +31,10 @@ module Dot
     # }
     def initialize(hash, src_base_path)
       dest = hash[DESTINATION]
-      inst_child = hash[INSTALL_CHILDREN]
 
       @name = hash[NAME]
       @destination = File.expand_path(dest) if dest
-      @install_children = hash.key?(inst_child) && inst_child
+      @install_children = hash[INSTALL_CHILDREN]
       @source = src_base_path + @name
       @exclude = hash[EXCLUDE]
       @deps = hash[DEPENDENCIES]
@@ -91,10 +90,7 @@ module Dot
 
     # Get an array of children
     def children
-      dir = Dir.new(@source)
-      children = dir.children.filter { |f| @exclude&.include?(f) }
-      dir.close
-      children
+      Dir.children(@source).filter { |f| !@exclude&.include?(f) }
     end
 
     # is Dot installed locally?
@@ -162,8 +158,6 @@ module Dot
       raise "'#{@source}' is not a directory" unless File.directory?(@source)
 
       children.each do |child|
-        next if @exclude&.include?(child)
-
         dest = File.join(@destination, child)
         src = File.join(@source, child)
         install_or_overwrite(src, dest) { |ch, des| yield(ch, des) }
@@ -182,7 +176,7 @@ module Dot
         end
         is_dir = File.directory?(dir)
         puts "😮 that's not a directory" unless is_dir
-        break if !is_dir && prompt.yes?('🥺 Try again?')
+        break if is_dir || !prompt.yes?('🥺 Try again?')
       end
 
       return nil unless File.directory?(dir)
