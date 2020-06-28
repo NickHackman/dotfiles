@@ -18,6 +18,32 @@ The purpose of Dots is to make startup time on a new machine as short as possibl
 
 Follow Ruby's official [installation instructions](https://www.ruby-lang.org/en/documentation/installation/)
 
+## 📷 Screenshots
+
+### ⬆️ Install All
+
+Installation with selection of any dotfiles
+
+![Install all](../imgs/install_all.png)
+
+### 🦊 Install Firefox CSS
+
+Installation with provided command line argument
+
+![Install Firefox](../imgs/install_firefox.png)
+
+### 🏥 Doctor
+
+Doctor for all dotfiles
+
+![Doctor](../imgs/doctor.png)
+
+### ⬇️ Remove all
+
+Uninstall all dotfiles
+
+![Remove all](../imgs/remove_all.png)
+
 ## ⚖️ License
 
 Licensed under [GPLv3](LICENSE)
