@@ -10,7 +10,7 @@ module Error
   # Name Invariant wasn't upheld
   #
   # Name MUST exist and not be empty
-  class NameInvariantError < StandardError
+  class NameInvError < StandardError
     def initialize(path, hash)
       @path = path
       @hash = hash
@@ -27,7 +27,7 @@ module Error
   #
   # Destination must exist if it doesn't then prompt_instructions must exist and
   # not be empty
-  class DestinationInvariantError < StandardError
+  class DestInvError < StandardError
     def initialize(hash)
       super('')
       @hash = hash
@@ -46,7 +46,7 @@ module Error
   # install_children is optional, if it does exist
   # - dir MUST be a directory
   # - dir MUST have children
-  class InstallChildrenInvariantError < StandardError
+  class InstChildrInvError < StandardError
     def initialize(dir, hash)
       super('')
       @dir = dir
@@ -83,7 +83,7 @@ module Error
   # exclude is optional, if it does exist
   # - dir MUST be a directory
   # - All of exclude MUST be in the directory dir
-  class ExcludeInvariantError < StandardError
+  class ExcludeInvError < StandardError
     def initialize(dir, hash)
       @dir = dir
       @hash = hash
@@ -117,7 +117,7 @@ module Error
   #
   # doctor_command is optional, if it does exist
   # - doctor_command when invoked must return 0
-  class DoctorCommandInvariantError < StandardError
+  class DocCmdInvError < StandardError
     def initialize(hash)
       @hash = hash
       super('')

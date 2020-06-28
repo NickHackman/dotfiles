@@ -48,7 +48,7 @@ module Conf
       name = hash[NAME]
       path = File.join(@dotfiles_dir, name)
       invariant = name && !name.empty? && File.exist?(path)
-      raise Error::NameInvariantError.new(path, hash), '' unless invariant
+      raise Error::NameInvError.new(path, hash), '' unless invariant
     end
 
     # destination invariant
@@ -64,7 +64,7 @@ module Conf
       else
         invariant = (dest.nil? && prompt && !prompt.empty?)
       end
-      raise Error::DestinationInvariantError.new(hash), '' unless invariant
+      raise Error::DestInvError.new(hash), '' unless invariant
     end
 
     # install_children invariant
@@ -74,15 +74,15 @@ module Conf
     # - @dotfiles_dir/name MUST have children
     def install_children_invariant(hash)
       inst_child = hash[INSTALL_CHILDREN]
+      return unless inst_child
 
       path = File.join(@dotfiles_dir, hash[NAME])
-      raise Error::InstallChildrenInvariantError.new(path, hash), '' unless File.directory?(path)
+      raise Error::InstChildrInvError.new(path, hash), '' unless File.directory?(path)
 
       dir = Dir.new(path)
-      invariant = (inst_child && !dir.children.empty?) ||
-                  !inst_child
+      invariant = !dir.children.empty?
       dir.close
-      raise Error::InstallChildrenInvariantError.new(path, hash), '' unless invariant
+      raise Error::InstChildrInvError.new(path, hash), '' unless invariant
     end
 
     # exclude invariant
@@ -96,13 +96,13 @@ module Conf
       return unless exclude
 
       path = File.join(@dotfiles_dir, hash[NAME])
-      raise Error::ExcludeInvariantError.new(path, hash), '' unless File.directory?(path)
+      raise Error::ExcludeInvError.new(path, hash), '' unless File.directory?(path)
 
       dir = Dir.new(path)
       all = exclude.all? { |excl| dir.children.include?(excl) }
       invariant = dir && all
       dir.close
-      raise Error::ExcludeInvariantError.new(path, hash), '' unless invariant
+      raise Error::ExcludeInvError.new(path, hash), '' unless invariant
     end
 
     # doctor_command invariant
@@ -118,7 +118,7 @@ module Conf
       quiet_cmd = "#{doc_cmd} > /dev/null 2>&1"
 
       invariant = system(quiet_cmd)
-      raise Error::DoctorCommandInvariantError.new(hash), '' unless invariant
+      raise Error::DocCmdInvError.new(hash), '' unless invariant
     end
   end
 end
