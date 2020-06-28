@@ -43,9 +43,9 @@ module Dots
     end
 
     # Doctor on all dotfiles
-    def doctor_all
+    def doctor_all(no_cmd = false)
       puts '🏥 The doctor is here to see you now...'
-      @dots.each(&:doctor)
+      @dots.each { |dot| dot.doctor(no_cmd) }
     end
 
     # Removes a specific dot by name

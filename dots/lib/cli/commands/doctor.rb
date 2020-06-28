@@ -15,7 +15,7 @@ module Commands
 
     def execute(*)
       dots = init
-      dots.doctor_all
+      dots.doctor_all(@options[:no_cmd])
     end
   end
 end

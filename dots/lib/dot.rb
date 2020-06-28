@@ -62,7 +62,7 @@ module Dot
 
     # Checks to see if dependencies are installed and runs associated 'doctor' command
     # if it exists
-    def doctor
+    def doctor(no_cmd = false)
       path = Path::Path.instance
       puts "🩺 Checkup for #{@name}"
       if @deps.nil?
@@ -76,7 +76,7 @@ module Dot
           end
         end
       end
-      path.run(@doctor_command) if @doctor_command
+      path.run(@doctor_command) if @doctor_command && !no_cmd
     end
 
     # Delete Dot

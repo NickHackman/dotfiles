@@ -56,6 +56,8 @@ module Dots
     desc 'doctor', 'Check dependencies for all dotfiles', aliases: 'd'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
+    method_option :no_cmd, aliases: '-no_cmd', type: :boolean,
+                           desc: 'Don\'t run doctor_command'
     method_option :config, aliases: '--config', type: :string,
                            desc: 'Path to dotfiles config file'
     method_option :dotfiles_dir, aliases: '--dotfiles_dir', type: :string,
