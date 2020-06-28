@@ -18,12 +18,12 @@ module Commands
       dots = init
 
       if @dots.empty?
-        dots.install_all
+        dots.install_all(@options[:copy])
       else
         puts '🚀 Installing...'
         @dots.each do |dot|
           begin
-            dots.install(dot)
+            dots.install(dot, @options[:copy])
           rescue Error::UnknownDot
             break
           end

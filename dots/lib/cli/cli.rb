@@ -22,9 +22,9 @@ module Dots
     desc 'validate', 'Validate dotfile config', aliases: 'v'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
-    method_option :config, aliases: %w[--config -c], type: :string,
+    method_option :config, aliases: '--config', type: :string,
                            desc: 'Path to dotfiles config file'
-    method_option :dotfiles_dir, aliases: %w[--dotfiles_dir -d], type: :string,
+    method_option :dotfiles_dir, aliases: '--dotfiles_dir', type: :string,
                                  desc: 'Path to dotfiles directory'
 
     def validate(*)
@@ -39,9 +39,9 @@ module Dots
     desc 'list', 'List dotfiles', aliases: 'l'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
-    method_option :config, aliases: %w[--config -c], type: :string,
+    method_option :config, aliases: '--config', type: :string,
                            desc: 'Path to dotfiles config file'
-    method_option :dotfiles_dir, aliases: %w[--dotfiles_dir -d], type: :string,
+    method_option :dotfiles_dir, aliases: '--dotfiles_dir', type: :string,
                                  desc: 'Path to dotfiles directory'
 
     def list(*)
@@ -56,9 +56,9 @@ module Dots
     desc 'doctor', 'Check dependencies for all dotfiles', aliases: 'd'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
-    method_option :config, aliases: %w[--config -c], type: :string,
+    method_option :config, aliases: '--config', type: :string,
                            desc: 'Path to dotfiles config file'
-    method_option :dotfiles_dir, aliases: %w[--dotfiles_dir -d], type: :string,
+    method_option :dotfiles_dir, aliases: '--dotfiles_dir', type: :string,
                                  desc: 'Path to dotfiles directory'
 
     def doctor(*)
@@ -73,9 +73,9 @@ module Dots
     desc 'remove', 'Remove installed configuration files', aliases: 'r'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
-    method_option :config, aliases: %w[--config -c], type: :string,
+    method_option :config, aliases: '--config', type: :string,
                            desc: 'Path to dotfiles config file'
-    method_option :dotfiles_dir, aliases: %w[--dotfiles_dir -d], type: :string,
+    method_option :dotfiles_dir, aliases: '--dotfiles_dir', type: :string,
                                  desc: 'Path to dotfiles directory'
 
     def remove(*names)
@@ -90,9 +90,11 @@ module Dots
     desc 'install', 'Install configuration files', aliases: 'i'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
-    method_option :config, aliases: %w[--config -c], type: :string,
+    method_option :copy, aliases: %w[--copy -c], type: :boolean,
+                         desc: 'Instead of creating symlinks, copy dotfiles'
+    method_option :config, aliases: '--config', type: :string,
                            desc: 'Path to dotfiles config file'
-    method_option :dotfiles_dir, aliases: %w[--dotfiles_dir -d], type: :string,
+    method_option :dotfiles_dir, aliases: '--dotfiles_dir', type: :string,
                                  desc: 'Path to dotfiles directory'
 
     def install(*names)

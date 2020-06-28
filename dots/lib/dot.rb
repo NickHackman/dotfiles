@@ -52,7 +52,7 @@ module Dot
 
     # Copies the dotfile to the destination
     def install_copy
-      install { |src, dest| FileUtils.cp(src, dest) }
+      install { |src, dest| FileUtils.cp_r(src, dest) }
     end
 
     # returns name of Dot

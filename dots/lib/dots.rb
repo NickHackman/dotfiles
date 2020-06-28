@@ -18,20 +18,20 @@ module Dots
     end
 
     # Install all selected dotfiles
-    def install_all
+    def install_all(copy = false)
       prompt = Cmd::Command.prompt
       selected = prompt.multi_select('Select to install', @dots, per_page: PAGINATION, cycle: true)
       puts '🚀 Installing...' unless selected.empty?
-      selected.each(&:install_symlink)
+      selected.each { |sel| copy ? sel.install_copy : sel.install_symlink }
     end
 
     # Installs a specific dot by name
     #
     # Raises If name isn't a valid Dot
-    def install(name)
+    def install(name, copy = false)
       found = @dots.find { |d| d.name == name }
       unknown_dot(found, name)
-      found.install_symlink
+      copy ? found.install_copy : found.install_symlink
     end
 
     # Remove all selected dotfiles
