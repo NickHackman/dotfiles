@@ -11,68 +11,96 @@ module Dots
     # Error raised by this runner
     Error = Class.new(StandardError)
 
-    desc 'version', 'dots version'
+    desc 'version', 'Dots version'
+    map %w[--version -v] => :version
 
     def version
       require_relative 'version'
       puts "v#{Dots::VERSION}"
     end
 
-    map %w[--version -v] => :version
-
-    desc 'list', 'List dotfiles'
-    method_option aliases: 'l'
+    desc 'validate', 'Validate dotfile config', aliases: 'v'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
+    method_option :config, aliases: %w[--config -c], type: :string,
+                           desc: 'Path to dotfiles config file'
+    method_option :dotfiles_dir, aliases: %w[--dotfiles_dir -d], type: :string,
+                                 desc: 'Path to dotfiles directory'
+
+    def validate(*)
+      if options[:help]
+        invoke :help, ['validate']
+      else
+        require_relative 'commands/validate'
+        Commands::Validate.new(options).execute
+      end
+    end
+
+    desc 'list', 'List dotfiles', aliases: 'l'
+    method_option :help, aliases: '-h', type: :boolean,
+                         desc: 'Display usage information'
+    method_option :config, aliases: %w[--config -c], type: :string,
+                           desc: 'Path to dotfiles config file'
+    method_option :dotfiles_dir, aliases: %w[--dotfiles_dir -d], type: :string,
+                                 desc: 'Path to dotfiles directory'
 
     def list(*)
       if options[:help]
         invoke :help, ['list']
       else
         require_relative 'commands/list'
-        Cmds::Commands::List.new(options).execute
+        Commands::List.new(options).execute
       end
     end
 
-    desc 'doctor', 'Check dependencies for all dotfiles'
-    method_option aliases: 'd'
+    desc 'doctor', 'Check dependencies for all dotfiles', aliases: 'd'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
+    method_option :config, aliases: %w[--config -c], type: :string,
+                           desc: 'Path to dotfiles config file'
+    method_option :dotfiles_dir, aliases: %w[--dotfiles_dir -d], type: :string,
+                                 desc: 'Path to dotfiles directory'
 
     def doctor(*)
       if options[:help]
         invoke :help, ['doctor']
       else
         require_relative 'commands/doctor'
-        Cmds::Commands::Doctor.new(options).execute
+        Commands::Doctor.new(options).execute
       end
     end
 
-    desc 'remove', 'Remove installed configuration files'
-    method_option aliases: 'r'
+    desc 'remove', 'Remove installed configuration files', aliases: 'r'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
+    method_option :config, aliases: %w[--config -c], type: :string,
+                           desc: 'Path to dotfiles config file'
+    method_option :dotfiles_dir, aliases: %w[--dotfiles_dir -d], type: :string,
+                                 desc: 'Path to dotfiles directory'
 
     def remove(*names)
       if options[:help]
         invoke :help, ['remove']
       else
         require_relative 'commands/remove'
-        Cmds::Commands::Remove.new(names, options).execute
+        Commands::Remove.new(names, options).execute
       end
     end
 
-    desc 'install', 'Install configuration files'
-    method_option aliases: 'i'
+    desc 'install', 'Install configuration files', aliases: 'i'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
+    method_option :config, aliases: %w[--config -c], type: :string,
+                           desc: 'Path to dotfiles config file'
+    method_option :dotfiles_dir, aliases: %w[--dotfiles_dir -d], type: :string,
+                                 desc: 'Path to dotfiles directory'
 
     def install(*names)
       if options[:help]
         invoke :help, ['install']
       else
         require_relative 'commands/install'
-        Cmds::Commands::Install.new(names, options).execute
+        Commands::Install.new(names, options).execute
       end
     end
   end

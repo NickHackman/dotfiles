@@ -6,24 +6,21 @@ require 'pathname'
 require_relative './cli/command'
 require_relative './dot'
 require_relative './error'
+require_relative './constant'
 
 module Dots
-  DOTS_YAML_PATH = 'dots.yml'
-
-  # docs
+  # Entry point for Dots application
+  #
+  # Handles installing, removing, listing, and doctoring for all dotfiles
   class Dots
-    def initialize
-      # Get dotfiles/dots
-      dots_dir = Pathname.new(File.expand_path(__dir__)).parent
-      dotfiles_dir = dots_dir.parent
-      yaml = YAML.load_file(dots_dir + DOTS_YAML_PATH)
-      @dots = yaml['dots'].map { |hash| Dot::Dot.new(hash, dotfiles_dir) }
+    def initialize(dots)
+      @dots = dots
     end
 
     # Install all selected dotfiles
     def install_all
       prompt = Cmd::Command.prompt
-      selected = prompt.multi_select('Select to install', @dots, per_page: 10, cycle: true)
+      selected = prompt.multi_select('Select to install', @dots, per_page: PAGINATION, cycle: true)
       puts '🚀 Installing...' unless selected.empty?
       selected.each(&:install_symlink)
     end
@@ -40,7 +37,7 @@ module Dots
     # Remove all selected dotfiles
     def remove_all
       prompt = Cmd::Command.prompt
-      selected = prompt.multi_select('Select to delete', @dots, per_page: 10, cycle: true)
+      selected = prompt.multi_select('Select to delete', @dots, per_page: PAGINATION, cycle: true)
       puts '🧼 Cleaning...' unless selected.empty?
       selected.each(&:remove)
     end

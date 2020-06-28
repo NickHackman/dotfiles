@@ -1,22 +1,21 @@
 # frozen_string_literal: true
 
-require_relative '../command'
-
 require_relative '../../dots'
 require_relative '../../error'
+require_relative '../../config'
 
-module Cmds
-  module Commands
-    # Install subcommand
-    class Doctor < Cmd::Command
-      def initialize(options)
-        @options = options
-      end
+require_relative './command'
 
-      def execute(input: $stdin, output: $stdout)
-        dots = Dots::Dots.new
-        dots.doctor_all
-      end
+module Commands
+  # Install subcommand
+  class Doctor < Commands::DotsCommand
+    def initialize(options)
+      @options = options
+    end
+
+    def execute(input: $stdin, output: $stdout)
+      dots = init
+      dots.doctor_all
     end
   end
 end

@@ -4,6 +4,7 @@ require 'fileutils'
 
 require_relative './cli/command'
 require_relative './path'
+require_relative './constant'
 
 module Dot
   # Dataclass that stores information about a singular Dotfile or Dot for short.
@@ -18,18 +19,28 @@ module Dot
     #
     # {
     #   "name": "name",
-    #   "destination": "destination",
-    #   "install_children": true
+    #   "destination": "place-to-install",
+    #   "install_children": true,
+    #   "prompt_instructions": "Only present if destination is 'null'",
+    #   "exclude": [],
+    #   "depdencies": [
+    #     "itself"
+    #     "other_dep"
+    #   ],
+    #   doctor_command: "sh command"
     # }
     def initialize(hash, src_base_path)
-      @name = hash['name']
-      @destination = File.expand_path(hash['destination']) if hash['destination']
-      @install_children = hash.key?('install_children') && hash['install_children']
+      dest = hash[DESTINATION]
+      inst_child = hash[INSTALL_CHILDREN]
+
+      @name = hash[NAME]
+      @destination = File.expand_path(dest) if dest
+      @install_children = hash.key?(inst_child) && inst_child
       @source = src_base_path + @name
-      @exclude = hash['exclude']
-      @deps = hash['dependencies']
-      @doctor_command = hash['doctor_command']
-      @prompt_instructions = hash['prompt_instructions']
+      @exclude = hash[EXCLUDE]
+      @deps = hash[DEPENDENCIES]
+      @doctor_command = hash[DOCTOR_COMMAND]
+      @prompt_instructions = hash[PROMPT_INSTRUCTIONS]
     end
 
     # Installs the dotfile as a symlink
@@ -81,7 +92,9 @@ module Dot
     # Get an array of children
     def children
       dir = Dir.new(@source)
-      dir.entries.filter { |f| !%w[. ..].include?(f) || @exclude&.include?(f) }
+      children = dir.children.filter { |f| @exclude&.include?(f) }
+      dir.close
+      children
     end
 
     # is Dot installed locally?
@@ -157,26 +170,35 @@ module Dot
       end
     end
 
+    # Prompt for directory to install dotfile def to
+    #
+    # Called when @destination = nil
+    def dir_prompt
+      prompt = Cmd::Command.prompt
+      dir = ''
+      loop do
+        dir = prompt.ask("#{@prompt_instructions}:", required: true) do |q|
+          q.modify :trim
+        end
+        is_dir = File.directory?(dir)
+        puts "😮 that's not a directory" unless is_dir
+        break if !is_dir && prompt.yes?('🥺 Try again?')
+      end
+
+      return nil unless File.directory?(dir)
+
+      dir
+    end
+
     # Handles case of @destination is nil
     #
     # Which means that the user must be prompted to find the path at runtime,
     # because it's impossible to determine otherwise
     def install_prompt
-      prompt = Cmd::Command.prompt
-      keep_asking = true
-      is_dir = false
-      while keep_asking
-        dir = prompt.ask("#{@prompt_instructions}:", required: true) do |q|
-          q.modify :trim
-        end
+      dir = dir_prompt
+      return if dir.nil?
 
-        is_dir = File.directory?(dir)
-        puts "😮 that's not a directory" unless is_dir
-        keep_asking = !is_dir && prompt.yes?('🥺 Try again?')
-      end
       @destination = dir
-
-      return unless is_dir
 
       _install_children { |src, dest| yield(src, dest) }
     end
