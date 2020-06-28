@@ -21,7 +21,10 @@ super + b
 	/usr/bin/firefox
 
 Print
-	scrot -q 80 'capture-%m-%d-%Y-%r.png' -e 'mv "$f" ~/Pictures/'
+	scrot -q 80 'screenshot-%m-%d-%Y-%r.png' -e 'mv "$f" ~/Pictures/'
+
+shift + Print
+	scrot -u -q 80 'windowshot-%m-%d-%Y-%r.png' -e 'mv "$f" ~/Pictures/'
 
 #
 # bspwm hotkeys
