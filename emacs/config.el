@@ -1,11 +1,13 @@
+;;;
+;;;
+;;;  _____ __ __
+;;; |   | |  |  |   Nick Hackman
+;;; | | | |     |   snickhackman@gmail.com
+;;; |_|___|__|__|   github.com/NickHackman
+;;;
+;;;
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
-
-
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets.
 (setq user-full-name "Scott Nicholas Hackman"
       user-mail-address "snickhackman@gmail.com")
 
@@ -75,6 +77,15 @@
 (setq centaur-tabs-set-bar 'under)
 ;; Disable tabs for eshell toggle terminal
 (add-hook 'eshell-mode-hook 'centaur-tabs-local-mode)
+
+;; Yaml-mode handle indentation
+(add-hook 'yaml-mode-hook
+  '(lambda ()
+    (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
+;; Allow for `.yaml` and `.yml` files for Yaml-mode
+(after! yaml-mode
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
 ;; Keybinds
 
