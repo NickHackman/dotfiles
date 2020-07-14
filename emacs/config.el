@@ -115,5 +115,5 @@
         ;; More intuitive keybinding for term
         :desc "Open eshell" "t" #'+eshell/toggle
         ;; Open Files with Treemacs
-        :desc "Open treemacs" "f" #'+treemacs/toggle
+        ;; :desc "Open treemacs" "f" #'+treemacs/toggle
       ))
