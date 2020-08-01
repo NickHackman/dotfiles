@@ -15,8 +15,10 @@ compinit
 # Import Zplug
 source ~/.zplug/init.zsh
 
-# Themes
-zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+# Theme
+# https://github.com/starship/starship
+eval "$(starship init zsh)"
+
 
 # Plugins
 zplug "zsh-users/zsh-history-substring-search"
@@ -35,17 +37,18 @@ zplug load
 
 # Aliases
 alias cat='bat'
-alias ls='exa --git'
-alias l='exa --git -l'
-alias la='exa --git -la'
+alias ls='exa --git --icons'
+alias l='exa --git -l --icons'
+alias la='exa --git -la --icons'
 alias grep='rg'
+alias du='dust'
+alias ps='procs'
 alias top='gotop'
 alias find='fd'
 
 # Env Vars
 EDITOR='emacs'
 HISTFILE='$HOME/.zsh_history'
-GOPATH="$HOME/.go"
 DENO_INSTALL="$HOME/.deno"
 
 # Path Modifications
