@@ -43,7 +43,7 @@ alias la='exa --git -la --icons'
 alias grep='rg'
 alias du='dust'
 alias ps='procs'
-alias top='gotop'
+alias top='ytop'
 alias find='fd'
 
 # Env Vars
