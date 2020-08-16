@@ -48,7 +48,7 @@ alias find='fd'
 
 # Env Vars
 EDITOR='emacs'
-HISTFILE='$HOME/.zsh_history'
+HISTFILE='/home/nick/.zsh_history'
 DENO_INSTALL="$HOME/.deno"
 
 # Path Modifications
