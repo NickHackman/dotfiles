@@ -129,7 +129,7 @@ font-2 = "Iosevka Nerd Font:size=20;5"
 
 modules-left = menu term web editor telegram steam
 modules-center = 
-modules-right = alsa backlight network battery sysmenu date sep2
+modules-right = alsa backlight network battery sysmenu date sep
 
 ; The separator will be inserted between the output of each module
 separator =
@@ -292,21 +292,18 @@ format-offset =
 pseudo-transparency = false
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-;;
-;;	   ______      __               
+;;	   ______      __
 ;;	  / ____/___  / /___  __________
 ;;	 / /   / __ \/ / __ \/ ___/ ___/
 ;;	/ /___/ /_/ / / /_/ / /  (__  ) 
 ;;	\____/\____/_/\____/_/  /____/  
-;;
-;; Created By Aditya Shakya @adi1090x
 ;;
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 [color]
 
 ;; Active Colors
-bg = #59000000
+bg = #FF000000
 bg-alt = #1A000000
 ;;bg = #072919
 fg = #EAEAEA
