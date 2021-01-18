@@ -1,0 +1,31 @@
+# Increase volume
+"pactl set-sink-volume @DEFAULT_SINK@ +1000"
+   XF86AudioRaiseVolume
+
+# Decrease volume
+"pactl set-sink-volume @DEFAULT_SINK@ -1000"
+   XF86AudioLowerVolume
+
+# Mute volume
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+   XF86AudioMute
+
+# Next song spotify
+"playerctl next"
+   XF86AudioNext
+
+# Previous song spotify
+"playerctl previous"
+   XF86AudioPrev
+
+# Play/Pause song
+"playerctl play-pause"
+   XF86AudioPlay
+
+# Lower brightness
+"light -U 10"
+   XF86MonBrightnessDown
+
+# Raise brightness
+"light -A 10"
+   XF86MonBrightnessUp

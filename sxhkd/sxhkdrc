@@ -1,29 +1,55 @@
+#!/bin/bash
+
 # terminal emulator
 super + Return
 	kitty
 
 # program launcher
 super + @space
-	  /home/nick/.config/polybar/scripts/menu
+	  rofi -no-lazy-grab -show drun -theme ~/.config/rofi/config.rasi
 
 super + w
-	  betterlockscreen -l
+	  dm-tool lock
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
 super + b
-	/usr/bin/firefox
-
-super + c
-	/usr/bin/emacs
+	google-chrome-stable
 
 Print
-	scrot -q 80 'screenshot-%m-%d-%Y-%r.png' -e 'mv "$f" ~/Pictures/'
+    flameshot gui
 
-shift + Print
-	scrot -u -q 80 'windowshot-%m-%d-%Y-%r.png' -e 'mv "$f" ~/Pictures/'
+#
+# Audio
+#
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +1000
+
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -1000
+
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+XF86AudioNext
+    playerctl next
+
+XF86AudioPrev
+    playerctl previous
+
+XF86AudioPlay
+    playerctl play-pause
+
+#
+# Brightness
+#
+XF86MonBrightnessDown
+    light -U 10
+
+XF86MonBrightnessUp
+    light -A 10
 
 #
 # bspwm hotkeys
